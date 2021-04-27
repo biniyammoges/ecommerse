@@ -1,0 +1,69 @@
+Auth Routers
+POST /api/v1/auth/login   @login user
+POST /api/v1/auth/register   @register user
+GET /api/v1/auth/logout   @logout user
+GET /api/v1/auth/me   @Get user profile
+PUT /api/v1/auth/update   @Update user profile like name, email
+PUT /api/v1/auth/password  @Update user password
+PUT /api/v1/auth/me/avatar   @Upload profile avatar
+DELETE /api/v1/auth/me/avatar   @delete profile avatar
+
+
+User Routers for admin
+GET /api/v1/user   @Get user profile
+PUT /api/v1/user   @Update user profile like name, email
+PUT /api/v1/user/password  @Update user password
+PUT /api/v1/user/profile   @Upload profile avatar
+DELETE /api/v1/user/profile/avatar   @delete profile avatar
+
+
+Product Routers
+GET /api/v1/products @view all products
+GET /api/v1/products/:id @view single product
+PUT /api/v1/products/:id @Update product
+DELETE /api/v1/products/:id @Delete product
+POST /api/v1/products @create product for admin
+GET /api/v1/products/top @get top rated product
+GET /api/v1/products/:id/related @get related products
+
+
+Category Routers
+GET /api/v1/categories @view all categories
+GET /api/v1/categories/:id @view single categorie
+GET /api/v1/categories/:id @view single categorie
+PUT /api/v1/categories/:id/products @Update categorie
+DELETE /api/v1/categories/:id @Delete categorie
+POST /api/v1/categories @create categorie for admin
+
+
+Order Routers
+GET /api/v1/orders @view all orders admin & delivery
+GET /api/v1/orders/:id @view single order
+PUT /api/v1/orders/:id @Update order
+DELETE /api/v1/orders/:id @Delete order
+POST /api/v1/orders @create order 
+
+
+Review Routers
+GET /api/v1/products/:id/reviews @get all reviews of product
+GET /api/v1/reviews/:id @view single review
+PUT /api/v1/reviews/:id @Update review
+DELETE /api/v1/reviews/:id @Delete review
+POST /api/v1/products/:id/reviews @Create review for product
+
+
+Restaurant Routers
+GET /api/v1/restaurants @get all available restaurants
+GET /api/v1/restaurants/:id @view single restaurants
+PUT /api/v1/restaurants/:id @Update restaurants
+DELETE /api/v1/restaurants/:id @Delete restaurants
+POST /api/v1/restaurants @Create restaurants
+
+
+Feedback Routers
+GET /api/v1/feedbacks @get all available restaurants admin
+GET /api/v1/feedbacks/:id @view single feedbacks admin
+PUT /api/v1/feedbacks/:id @Update feedbacks admin
+DELETE /api/v1/feedbacks/:id @Delete feedbacks admin
+POST /api/v1/feedbacks @Create feedbacks 
+
