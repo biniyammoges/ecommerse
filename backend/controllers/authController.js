@@ -142,14 +142,14 @@ exports.uploadAvatar = asyncHandler(async (req, res, next) => {
   // Create custom filename
   file.name = `avatar_${req.user._id}${path.parse(file.name).ext}`;
 
-  file.mv(`${process.env.FILE_PATH}/${file.name}`, async (err) => {
+  file.mv(`${process.env.USER_FILE_PATH}/${file.name}`, async (err) => {
     if (err) {
       console.error(err);
       return next(new ErrorResponse(`Problem with file upload`, 500));
     }
 
     await User.findByIdAndUpdate(req.user._id, {
-      avatar: file.name,
+      avatar: `/uploads/users/${file.name}`,
     });
 
     res.status(200).json({
@@ -166,15 +166,17 @@ exports.deleteAvatar = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`No image to delete`, 400));
   }
 
-  fs.unlinkSync(`${process.env.FILE_PATH}/${user.avatar}`);
+  fs.unlinkSync(`${process.env.FILE_PATH}${user.avatar}`);
 
-  user.avatar = "no-image.png";
+  // user.avatar = "no-image.png";
 
-  await user.save();
+  await user.update(
+    { avatar: "no-image.png" },
+    { new: true, runValidators: true }
+  );
 
   res.status(200).json({
     success: true,
-    data: user,
   });
 });
 

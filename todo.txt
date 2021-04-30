@@ -10,11 +10,11 @@ DELETE /api/v1/auth/me/avatar   @delete profile avatar
 
 
 User Routers for admin
-GET /api/v1/user   @Get user profile
-PUT /api/v1/user   @Update user profile like name, email
-PUT /api/v1/user/password  @Update user password
-PUT /api/v1/user/profile   @Upload profile avatar
-DELETE /api/v1/user/profile/avatar   @delete profile avatar
+GET /api/v1/users   @Get user profile
+PUT /api/v1/users:id   @Update user profile like name, email
+PUT /api/v1/users/:id/password  @Update user password
+PUT /api/v1/users/:id/profile   @Upload profile avatar
+DELETE /api/v1/users/:id/profile/avatar   @delete profile avatar
 
 
 Product Routers

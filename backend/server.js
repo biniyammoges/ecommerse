@@ -9,7 +9,8 @@ const { errorHandler, notFound } = require("./middlewares/errorHandler");
 
 // routers
 const authRouter = require("./routes/authRouters");
-// const userRouter = require("./routes/userRouter");
+const userRouter = require("./routes/userRouter");
+const productRouter = require("./routes/productRouter");
 
 dotenv.config();
 
@@ -29,7 +30,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("dev"));
 
 app.use("/api/v1/auth", authRouter);
-// app.use("/api/v1/user", userRouter);
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/products", productRouter);
 
 // errorHandler
 app.use(notFound);
