@@ -7,15 +7,17 @@ const {
   updateProduct,
   deleteProduct,
   getTopRated,
+  getRelatedProduct,
 } = require("../controllers/productController");
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route("/")
   .get(getProducts)
   .post(protect, authorize("admin"), createProduct);
 router.route("/top").get(getTopRated);
+router.route("/related/:id").get(getRelatedProduct);
 router
   .route("/:id")
   .get(getProduct)

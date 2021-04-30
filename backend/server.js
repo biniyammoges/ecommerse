@@ -11,6 +11,7 @@ const { errorHandler, notFound } = require("./middlewares/errorHandler");
 const authRouter = require("./routes/authRouters");
 const userRouter = require("./routes/userRouter");
 const productRouter = require("./routes/productRouter");
+const categoryRouter = require("./routes/categoryRouter");
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/products", productRouter);
+app.use("/api/v1/category", categoryRouter);
 
 // errorHandler
 app.use(notFound);

@@ -14,15 +14,15 @@ const productSchema = new mongoose.Schema({
   image: {
     type: String,
     required: [true, "Please add product image"],
+    default: "no-image.png",
   },
   price: {
     type: String,
     required: [true, "Please add product price"],
-    default: "0",
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    // required: [true, "please choose product category"],
+    required: [true, "Please add product category"],
     ref: "Category",
   },
   rating: {
