@@ -1,1 +1,1 @@
-1. fix product vallidation error with file upload
+1. fix product vallidation error with file upload - fixed

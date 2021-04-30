@@ -159,6 +159,9 @@ exports.uploadAvatar = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc Delete avatar
+// @route PUT /api/v1/auth/me/avatar
+// @access private
 exports.deleteAvatar = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id);
 
