@@ -10,7 +10,13 @@ const {
   getRelatedProduct,
 } = require("../controllers/productController");
 
+// Include other routers
+const reviewRouter = require("./reviewRouter");
+
 const router = express.Router({ mergeParams: true });
+
+// re-router
+router.use("/review/:productId", reviewRouter);
 
 router
   .route("/")

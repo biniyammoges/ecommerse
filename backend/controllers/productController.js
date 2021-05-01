@@ -12,7 +12,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
   if (req.params.categoryId) {
     const products = await Product.find({
       category: req.params.categoryId,
-    });
+    }).populate("category", "name type");
 
     return res.status(200).json({
       products,
@@ -39,10 +39,10 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     );
 
     // Finding the resource
-    query = Product.find(JSON.parse(queryStr)).populate({
-      path: "category",
-      select: "name type",
-    });
+    query = Product.find(JSON.parse(queryStr)).populate(
+      "category",
+      "name type"
+    );
 
     // Select fields
     if (req.query.select) {
@@ -130,7 +130,10 @@ exports.createProduct = asyncHandler(async (req, res, next) => {
 // @route GET /api/v1/products/:id
 // @access public
 exports.getProduct = asyncHandler(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id).populate(
+    "category",
+    "name type"
+  );
 
   if (!product) {
     return next(
