@@ -8,13 +8,13 @@ const asyncHandler = require("../middlewares/asyncHandler");
 // @route POST /api/v1/auth/register
 // @access public
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, phone } = req.body;
 
   if (await User.findOne({ email })) {
     return next(new ErrorResponse(`User already exist with ${email}`, 401));
   }
 
-  const user = await User.create({ name, email, password });
+  const user = await User.create({ name, email, password, phone });
 
   sendTokenResponse(user, 201, res);
 });

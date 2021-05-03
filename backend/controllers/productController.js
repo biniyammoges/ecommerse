@@ -244,12 +244,18 @@ exports.getTopRated = asyncHandler(async (req, res, next) => {
 exports.getRelatedProduct = asyncHandler(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
+  if (!product) {
+    return next(
+      new ErrorRespnse(`Product not found with id of ${req.params.id}`, 404)
+    );
+  }
+
   const products = await Product.find({
     _id: { $ne: req.params.id },
     category: product.category,
   })
     .sort({ rating: -1 })
-    .limit(5);
+    .limit(10);
 
   res.status(200).json({
     products,

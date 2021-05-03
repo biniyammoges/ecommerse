@@ -14,6 +14,7 @@ const productRouter = require("./routes/productRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const restRouter = require("./routes/restRouter");
 const reviewRouter = require("./routes/reviewRouter");
+const reportRouter = require("./routes/reportRouter");
 
 dotenv.config();
 
@@ -38,6 +39,7 @@ app.use("/api/v1/products", productRouter);
 app.use("/api/v1/category", categoryRouter);
 app.use("/api/v1/restaurant", restRouter);
 app.use("/api/v1/review", reviewRouter);
+app.use("/api/v1/reports", reportRouter);
 
 // errorHandler
 app.use(notFound);
