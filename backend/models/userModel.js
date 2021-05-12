@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default: "no-image.png",
+      default: "/aimages/no-image.svg",
     },
     role: {
       type: String,

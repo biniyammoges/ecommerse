@@ -6,11 +6,11 @@ const ErrorRespnse = require("../utils/errorResponse");
 // @desc Get orders by user
 // @route GET /api/v1/orders
 // @access private/user/admin
-exports.getyOrders = asyncHandler(async (req, res, next) => {
+exports.getMyOrders = asyncHandler(async (req, res, next) => {
   let orders;
 
   // Get all orders for admin
-  if (req.user.role === "admin") {
+  if (req.user.role === "admin" || req.user.role === "delivery") {
     orders = await Order.find({}).populate("user", "name email");
   }
 
@@ -58,4 +58,27 @@ exports.updateOrder = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     order,
   });
+});
+
+// @desc Create order
+// @route POST /api/v1/orders
+// @access private
+exports.createOrder = asyncHandler(async (req, res, next) => {
+  const { orderItems, shippingAddress, itemsPrice, totalPrice } = req.body;
+
+  if (orderItems && orderItems.length === 0) {
+    return next(new ErrorRespnse(`No ordered items`, 400));
+  } else {
+    const order = new Order({
+      orderItems,
+      user: req.user._id,
+      shippingAddress,
+      taxPrice,
+      totalPrice,
+    });
+
+    const createdOrder = await order.save();
+
+    res.status(201).json({ order: createdOrder });
+  }
 });

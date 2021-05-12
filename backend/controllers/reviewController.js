@@ -47,7 +47,10 @@ exports.createReview = asyncHandler(async (req, res, next) => {
 // @route GET /api/v1/product/review/:productId
 // @access public
 exports.getReviews = asyncHandler(async (req, res, next) => {
-  const reviews = await Review.find({ product: req.params.productId });
+  const reviews = await Review.find({ product: req.params.productId }).populate(
+    "user",
+    "name avatar"
+  );
 
   res.status(200).json({
     count: reviews.length,
@@ -59,7 +62,10 @@ exports.getReviews = asyncHandler(async (req, res, next) => {
 // @route GET /api/v1/review/:id
 // @access public
 exports.getReview = asyncHandler(async (req, res, next) => {
-  const review = await Review.findById(req.params.id);
+  const review = await Review.findById(req.params.id).populate(
+    "user",
+    "name avatar"
+  );
 
   if (!review) {
     return next(
@@ -76,7 +82,10 @@ exports.getReview = asyncHandler(async (req, res, next) => {
 // @route PUT /api/v1/review/:id
 // @access public
 exports.updateReview = asyncHandler(async (req, res, next) => {
-  const review = await Review.findById(req.params.id);
+  const review = await Review.findById(req.params.id).populate(
+    "user",
+    "name avatar"
+  );
 
   if (!review) {
     return next(
