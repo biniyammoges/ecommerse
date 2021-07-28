@@ -62,6 +62,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 15;
     const skip = (page - 1) * limit;
+    console.log(req.query)
 
     query = query.skip(skip).limit(limit);
 
@@ -69,6 +70,7 @@ exports.getProducts = asyncHandler(async (req, res, next) => {
 
     res.status(200).json({
       products,
+      page,
       count: products.length,
     });
   }

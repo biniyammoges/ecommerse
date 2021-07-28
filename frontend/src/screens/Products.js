@@ -38,7 +38,7 @@ const Products = () => {
                       value={product.rating}
                       text={`Rate - ${product.rating}`}
                     />
-                    <p>1{product.price}</p>
+                    <p>{product.price}</p>
                   </div>
                 </Link>
               ))}
